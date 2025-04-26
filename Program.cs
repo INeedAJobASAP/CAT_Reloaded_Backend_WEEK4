@@ -4,33 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DELEGATE_CALC
+namespace DELEG_ARRSUM
 {
-     internal class Program
+    internal class Program
     {
-        delegate int Calc(int a, int b);
-        static int Add(int a, int b)
-        {
-            return a + b;
-        }
-        static int Sub(int a, int b)
-        {
-            return a - b;
-        }
-        static int Mul(int a, int b)
-        {
-            return a * b;
-        }
+        delegate int SumArray(int[] numbers);
         static void Main()
         {
-            Calc add = Add;
-            Calc subtract = Sub;
-            Calc multiply = Mul;
-            int num1 = 10, num2 = 5;
-            Console.WriteLine($"Add: {add(num1, num2)}");
-            Console.WriteLine($"Subtract: {subtract(num1, num2)}");
-            Console.WriteLine($"Multiply: {multiply(num1, num2)}");
+            SumArray sum = delegate (int[] nums)
+            {
+                int total = 0;
+                foreach (int num in nums)
+                {
+                    total += num;
+                }
+                return total;
+            };
+            int[] arr = { 10, 11, 19, 8, 4 };
+            Console.WriteLine($"sum array: {sum(arr)}");
         }
     }
+
 
 }
